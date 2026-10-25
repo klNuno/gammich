@@ -1,4 +1,4 @@
-import { getSession, type Session } from '$lib/api';
+import { getSession, type Session } from '#lib/api.ts';
 
 // What this browser may do (read, edit) and whether the library is set up.
 // Loaded once at startup; the layout waits for it before rendering routes.

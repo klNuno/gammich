@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Check, Image as ImageIcon, Sparkles } from '@lucide/svelte';
-	import { spriteURL, streamURL, thumbURL, type Clip } from '$lib/api';
+	import { spriteURL, streamURL, thumbURL, type Clip } from '#lib/api.ts';
 	import {
 		clipTitle,
 		formatDateRelative,
@@ -10,12 +10,12 @@
 		isTechTag,
 		tagChipClass,
 		tagKind
-	} from '$lib/utils';
+	} from '#lib/utils.ts';
 	import { pushState } from '$app/navigation';
 	import { page } from '$app/state';
-	import { selection } from '$lib/state/selection.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import { selection } from '#lib/state/selection.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = {
 		clip: Clip;
@@ -63,7 +63,7 @@
 	}
 
 	function open() {
-		const params = new URLSearchParams(page.url.searchParams);
+		const params = new URLSearchParams(page.url.search);
 		params.set('clip', String(clip.id));
 		pushState(`?${params.toString()}`, { clipId: clip.id });
 	}

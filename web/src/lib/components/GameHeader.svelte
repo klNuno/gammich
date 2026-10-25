@@ -2,11 +2,11 @@
 	import { Check, Eye, EyeOff, Pencil, X } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import GameCover from './GameCover.svelte';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { formatDateRelative, gameName } from '$lib/utils';
-	import type { Category } from '$lib/api';
-	import { formatNumber, t } from '$lib/i18n/index.svelte';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { formatDateRelative, gameName } from '#lib/utils.ts';
+	import type { Category } from '#lib/api.ts';
+	import { formatNumber, t } from '#lib/i18n/index.svelte.ts';
 
 	// Header of a game page (?category=): cover, big name, clip count, and the
 	// two actions about the game itself.

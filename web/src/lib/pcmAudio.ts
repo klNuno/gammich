@@ -1,4 +1,4 @@
-import { pcmURL, unauthorized } from '$lib/api';
+import { pcmURL, unauthorized } from '#lib/api.ts';
 
 // Audio playback outside <video>: Firefox does not decode the pcm_f32le of OBS
 // recordings, and no browser can switch audio tracks in <video>. The video

@@ -2,13 +2,13 @@
 	import { onMount } from 'svelte';
 	import { Eye, EyeOff, Plus } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
-	import GameCover from '$lib/components/GameCover.svelte';
-	import { createCategory, type Category } from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { search } from '$lib/state/search.svelte';
-	import { formatDateRelative, gameName } from '$lib/utils';
-	import { i18n, t, type MessageKey } from '$lib/i18n/index.svelte';
+	import GameCover from '#lib/components/GameCover.svelte';
+	import { createCategory, type Category } from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { search } from '#lib/state/search.svelte.ts';
+	import { formatDateRelative, gameName } from '#lib/utils.ts';
+	import { i18n, t, type MessageKey } from '#lib/i18n/index.svelte.ts';
 
 	type Order = 'recent' | 'count' | 'name';
 	const ORDERS: { k: Order; label: MessageKey }[] = [

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { thumbURL, type Category } from '$lib/api';
-	import { cn, gameName } from '$lib/utils';
+	import { thumbURL, type Category } from '#lib/api.ts';
+	import { cn, gameName } from '#lib/utils.ts';
 
 	// Game cover: the Steam image if found, else a mosaic of the latest clips
 	// (an "OBS" or "Desktop" folder has no cover), else initials on a flat

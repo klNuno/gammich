@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 	import { Check, Pencil, Sparkles, Trash2, X } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
-	import { deleteTag, listTagsWithCounts, renameTag, type TagWithCount } from '$lib/api';
-	import { search } from '$lib/state/search.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { tagChipClass, tagKind } from '$lib/utils';
-	import { formatNumber, i18n, t, type MessageKey } from '$lib/i18n/index.svelte';
+	import { deleteTag, listTagsWithCounts, renameTag, type TagWithCount } from '#lib/api.ts';
+	import { search } from '#lib/state/search.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { tagChipClass, tagKind } from '#lib/utils.ts';
+	import { formatNumber, i18n, t, type MessageKey } from '#lib/i18n/index.svelte.ts';
 
 	type Mode = 'manual' | 'auto' | 'all';
 	const MODES: { k: Mode; label: MessageKey }[] = [

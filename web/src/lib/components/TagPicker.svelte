@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Plus, X } from '@lucide/svelte';
-	import { createTag, listTags, type Tag } from '$lib/api';
+	import { createTag, listTags, type Tag } from '#lib/api.ts';
 	import { toast } from 'svelte-sonner';
-	import { tagChipClass } from '$lib/utils';
-	import { t } from '$lib/i18n/index.svelte';
+	import { tagChipClass } from '#lib/utils.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = {
 		selected: Tag[];

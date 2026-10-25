@@ -29,9 +29,9 @@
 		type Category,
 		type Clip,
 		type Tag
-	} from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
+	} from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
 	import {
 		clipTitle,
 		formatBytes,
@@ -42,8 +42,8 @@
 		isTechTag,
 		tagChipClass,
 		tagKind
-	} from '$lib/utils';
-	import { formatNumber, t } from '$lib/i18n/index.svelte';
+	} from '#lib/utils.ts';
+	import { formatNumber, t } from '#lib/i18n/index.svelte.ts';
 
 	// Player + info panel of a clip, shared by the grid dialog and the
 	// /clip/[id] page. The parent must recreate it on every clip change

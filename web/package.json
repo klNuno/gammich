@@ -3,6 +3,10 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"imports": {
+		"#lib": "./src/lib/index.ts",
+		"#lib/*": "./src/lib/*"
+	},
 	"packageManager": "pnpm@11.1.2",
 	"scripts": {
 		"dev": "vite dev",
@@ -21,7 +25,7 @@
 		"svelte": "^5.57.2",
 		"svelte-check": "^4.7.7",
 		"tailwindcss": "^4.3.3",
-		"typescript": "^7.0.2",
+		"typescript": "^6.0.3",
 		"vite": "^8.3.5"
 	},
 	"dependencies": {

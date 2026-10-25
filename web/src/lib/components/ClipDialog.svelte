@@ -2,9 +2,9 @@
 	import Dialog from './ui/Dialog.svelte';
 	import ClipView from './ClipView.svelte';
 	import { ChevronLeft, ChevronRight } from '@lucide/svelte';
-	import { getClip, type Clip } from '$lib/api';
-	import { clipTitle } from '$lib/utils';
-	import { t } from '$lib/i18n/index.svelte';
+	import { getClip, type Clip } from '#lib/api.ts';
+	import { clipTitle } from '#lib/utils.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = {
 		clipId: number | null;

@@ -13,9 +13,9 @@
 		VolumeX
 	} from '@lucide/svelte';
 	import { Popover } from 'bits-ui';
-	import { recheckAccess } from '$lib/api';
-	import { PcmAudioSync, type PcmStatus } from '$lib/pcmAudio';
-	import { t, type MessageKey } from '$lib/i18n/index.svelte';
+	import { recheckAccess } from '#lib/api.ts';
+	import { PcmAudioSync, type PcmStatus } from '#lib/pcmAudio.ts';
+	import { t, type MessageKey } from '#lib/i18n/index.svelte.ts';
 
 	// names: one name per track ("" if unknown). guessed: the server picked
 	// generic English names ("Game", "Microphone"), translated here.
