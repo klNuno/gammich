@@ -1,0 +1,23 @@
+# Quick start: cp .env.example .env, set GAMMICH_VIDEOS_DIR and
+# GAMMICH_PASSWORD, then `docker compose up -d` and open http://localhost:8080.
+services:
+  gammich:
+    image: ${GAMMICH_IMAGE:-ghcr.io/klnuno/gammich:latest}
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${GAMMICH_BIND:-0.0.0.0}:${GAMMICH_PORT:-8080}:8080"
+    volumes:
+      # Your recordings, mounted read-only: gammich never writes to them.
+      - ${GAMMICH_VIDEOS_DIR:?set GAMMICH_VIDEOS_DIR in .env}:/videos:ro
+      - gammich-data:/data
+      - gammich-cache:/cache
+    # Preview generation runs ffmpeg; raise the cap for faster first indexing.
+    cpus: ${GAMMICH_CPUS:-2}
+    mem_limit: ${GAMMICH_MEM:-1g}
+
+volumes:
+  gammich-data:
+  gammich-cache:

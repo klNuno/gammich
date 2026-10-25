@@ -1,0 +1,24 @@
+# Two ways to put gammich behind Caddy. Pick one site block.
+
+# 1. Built-in login (GAMMICH_PASSWORD set): a plain reverse proxy. Set
+#    GAMMICH_TRUSTED_PROXIES=127.0.0.1 (or Caddy's container address) so login
+#    rate limiting tells visitors apart.
+clips.example.com {
+	reverse_proxy 127.0.0.1:8080
+}
+
+# 2. Single sign-on through forward_auth (Authelia here; Authentik and
+#    oauth2-proxy work the same way). Leave GAMMICH_PASSWORD empty and set the
+#    same GAMMICH_PROXY_SECRET in gammich's and Caddy's environment. Requests
+#    carrying the secret may edit and their Remote-User header is trusted.
+#    Reads stay open to anyone who reaches gammich's port directly, so publish
+#    that port on a private network only.
+clips.example.com {
+	forward_auth authelia:9091 {
+		uri /api/authz/forward-auth
+		copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+	}
+	reverse_proxy gammich:8080 {
+		header_up X-Gammich-Proxy-Secret {$GAMMICH_PROXY_SECRET}
+	}
+}
