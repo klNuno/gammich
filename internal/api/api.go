@@ -747,6 +747,9 @@ func (s *Server) unifiedSearch(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "internal error", 500)
 		return
 	}
+	if tags == nil {
+		tags = []gammichdb.TagWithCount{}
+	}
 	ids := make([]int64, len(clips))
 	for i, c := range clips {
 		ids[i] = c.ID
