@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Search, Tag as TagIcon, Gamepad2, Film, X } from '@lucide/svelte';
-	import { unifiedSearch, type SearchResponse, type Tag } from '$lib/api';
+	import { unifiedSearch, type SearchResponse, type Tag } from '#lib/api.ts';
 	import { goto, pushState } from '$app/navigation';
 	import { page } from '$app/state';
-	import { search } from '$lib/state/search.svelte';
-	import { clipTitle, gameName } from '$lib/utils';
-	import { formatNumber, t } from '$lib/i18n/index.svelte';
+	import { search } from '#lib/state/search.svelte.ts';
+	import { clipTitle, gameName } from '#lib/utils.ts';
+	import { formatNumber, t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = { activeTags: Tag[]; query: string };
 	let { activeTags, query }: Props = $props();
@@ -42,14 +42,13 @@
 	function pushQueryToURL(v: string) {
 		if (urlDebounce) clearTimeout(urlDebounce);
 		urlDebounce = setTimeout(() => {
-			const params = new URLSearchParams(page.url.searchParams);
+			const params = new URLSearchParams(page.url.search);
 			const trimmed = v.trim();
 			trimmed ? params.set('q', trimmed) : params.delete('q');
 			const qs = params.toString();
 			goto(page.url.pathname + (qs ? `?${qs}` : ''), {
-				keepFocus: true,
-				replaceState: true,
-				noScroll: true
+				replace: true,
+				reset: false
 			});
 		}, 300);
 	}
@@ -91,7 +90,7 @@
 
 	function applyTagFilter(tagId: number) {
 		const base = listPage ? page.url.pathname : '/';
-		const params = new URLSearchParams(listPage ? page.url.searchParams : undefined);
+		const params = new URLSearchParams(listPage ? page.url.search : undefined);
 		const cur = (params.get('tags') ?? '')
 			.split(',')
 			.map((s) => parseInt(s, 10))
@@ -99,28 +98,28 @@
 		if (!cur.includes(tagId)) cur.push(tagId);
 		params.set('tags', cur.join(','));
 		params.delete('q');
-		goto(base + '?' + params.toString(), { keepFocus: true, noScroll: true });
+		goto(base + '?' + params.toString(), { reset: false });
 		closeDropdown();
 	}
 
 	function applyCategory(catId: number) {
 		const base = listPage ? page.url.pathname : '/';
 		// Same as applyTagFilter: keeps the existing params (sort, etc.), only drops q.
-		const params = new URLSearchParams(listPage ? page.url.searchParams : undefined);
+		const params = new URLSearchParams(listPage ? page.url.search : undefined);
 		params.set('category', String(catId));
 		params.delete('q');
-		goto(base + '?' + params.toString(), { keepFocus: false, noScroll: true });
+		goto(base + '?' + params.toString(), { reset: false });
 		closeDropdown();
 	}
 
 	function openClip(id: number) {
 		if (listPage) {
 			// Shallow routing like ClipCard, no stray history entry.
-			const params = new URLSearchParams(page.url.searchParams);
+			const params = new URLSearchParams(page.url.search);
 			params.set('clip', String(id));
 			pushState(`?${params.toString()}`, { clipId: id });
 		} else {
-			goto('/?clip=' + id, { keepFocus: false, noScroll: false });
+			goto('/?clip=' + id);
 		}
 		closeDropdown();
 	}
@@ -128,18 +127,17 @@
 	function submitQuery() {
 		const v = input.trim();
 		const base = listPage ? page.url.pathname : '/';
-		const params = new URLSearchParams(listPage ? page.url.searchParams : undefined);
+		const params = new URLSearchParams(listPage ? page.url.search : undefined);
 		v ? params.set('q', v) : params.delete('q');
 		goto(base + '?' + params.toString(), {
-			keepFocus: true,
-			replaceState: listPage,
-			noScroll: true
+			replace: listPage,
+			reset: false
 		});
 		closeDropdown();
 	}
 
 	function removeActiveTag(id: number) {
-		const params = new URLSearchParams(page.url.searchParams);
+		const params = new URLSearchParams(page.url.search);
 		const cur = (params.get('tags') ?? '')
 			.split(',')
 			.map((s) => parseInt(s, 10))
@@ -147,7 +145,7 @@
 		if (cur.length) params.set('tags', cur.join(','));
 		else params.delete('tags');
 		const qs = params.toString();
-		goto(qs ? '?' + qs : '?', { keepFocus: true, replaceState: true, noScroll: true });
+		goto(qs ? '?' + qs : '?', { replace: true, reset: false });
 	}
 
 	function clearInput() {

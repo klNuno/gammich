@@ -2,9 +2,9 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { ArrowRight, KeyRound, RotateCw } from '@lucide/svelte';
-	import { ApiError, login } from '$lib/api';
-	import { session } from '$lib/state/session.svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import { ApiError, login } from '#lib/api.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	let password = $state('');
 	let busy = $state(false);
@@ -23,7 +23,7 @@
 
 	// Already allowed in (signed in, or no password on this server).
 	$effect(() => {
-		if (session.canRead) goto(next, { replaceState: true });
+		if (session.canRead) goto(next, { replace: true });
 	});
 
 	async function loadSession() {

@@ -5,19 +5,19 @@
 	import '@fontsource/barlow-condensed/latin-600.css';
 	import '@fontsource/barlow-condensed/latin-700.css';
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 	import { onMount, untrack } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { Toaster } from 'svelte-sonner';
-	import AppSidebar from '$lib/components/AppSidebar.svelte';
-	import AppTopbar from '$lib/components/AppTopbar.svelte';
-	import MobileNav from '$lib/components/MobileNav.svelte';
-	import SettingsSheet from '$lib/components/SettingsSheet.svelte';
-	import { listTags, listTagsWithCounts, onUnauthorized, type Tag, type SortOption } from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import AppSidebar from '#lib/components/AppSidebar.svelte';
+	import AppTopbar from '#lib/components/AppTopbar.svelte';
+	import MobileNav from '#lib/components/MobileNav.svelte';
+	import SettingsSheet from '#lib/components/SettingsSheet.svelte';
+	import { listTags, listTagsWithCounts, onUnauthorized, type Tag, type SortOption } from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	let { children } = $props();
 
@@ -50,7 +50,7 @@
 		if (page.url.pathname === '/login') return;
 		// location, not page.url: shallow routing (?clip=) does not update page.url.
 		const next = location.pathname + location.search;
-		goto(`/login?next=${encodeURIComponent(next)}`, { replaceState: true });
+		goto(`/login?next=${encodeURIComponent(next)}`, { replace: true });
 	}
 
 	// No read access (password mode, signed out): the login page.

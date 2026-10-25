@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { formatNumber, i18n, t } from '$lib/i18n/index.svelte';
+import { formatNumber, i18n, t } from '#lib/i18n/index.svelte.ts';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

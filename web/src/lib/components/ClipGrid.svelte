@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { Clip } from '$lib/api';
+	import type { Clip } from '#lib/api.ts';
 
 	type CacheEntry = {
 		clips: Clip[];
@@ -19,17 +19,17 @@
 	import { goto, replaceState } from '$app/navigation';
 	import { tick } from 'svelte';
 	import { SearchX, Clapperboard, X, Tag as TagIcon, ArrowDownUp, CheckSquare } from '@lucide/svelte';
-	import ClipCard from '$lib/components/ClipCard.svelte';
-	import ClipDialog from '$lib/components/ClipDialog.svelte';
-	import BulkActionBar from '$lib/components/BulkActionBar.svelte';
-	import GameHeader from '$lib/components/GameHeader.svelte';
-	import GameStrip from '$lib/components/GameStrip.svelte';
-	import { listClips, SORT_OPTIONS, sortLabel as labelOf, type SortOption } from '$lib/api';
-	import { t } from '$lib/i18n/index.svelte';
-	import { dateGroupLabel } from '$lib/utils';
-	import { ui, DENSITY_GRID } from '$lib/state/ui.svelte';
-	import { selection } from '$lib/state/selection.svelte';
-	import { session } from '$lib/state/session.svelte';
+	import ClipCard from '#lib/components/ClipCard.svelte';
+	import ClipDialog from '#lib/components/ClipDialog.svelte';
+	import BulkActionBar from '#lib/components/BulkActionBar.svelte';
+	import GameHeader from '#lib/components/GameHeader.svelte';
+	import GameStrip from '#lib/components/GameStrip.svelte';
+	import { listClips, SORT_OPTIONS, sortLabel as labelOf, type SortOption } from '#lib/api.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
+	import { dateGroupLabel } from '#lib/utils.ts';
+	import { ui, DENSITY_GRID } from '#lib/state/ui.svelte.ts';
+	import { selection } from '#lib/state/selection.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
 
 	type Props = {
 		kind?: 'video' | 'screenshot';
@@ -206,7 +206,7 @@
 			history.back();
 			return;
 		}
-		const p = new URLSearchParams(page.url.searchParams);
+		const p = new URLSearchParams(page.url.search);
 		p.delete('clip');
 		const qs = p.toString();
 		replaceState(qs ? `?${qs}` : page.url.pathname, { clipId: null });
@@ -215,7 +215,7 @@
 	// Prev/next navigation in the dialog: replaceState so a single "back" closes
 	// the dialog to the grid (no history of every clip seen).
 	function navigateToClip(id: number) {
-		const p = new URLSearchParams(page.url.searchParams);
+		const p = new URLSearchParams(page.url.search);
 		p.set('clip', String(id));
 		replaceState(`?${p.toString()}`, { clipId: id });
 	}
@@ -269,11 +269,11 @@
 	const hasChips = $derived(!!query || !!tagKey || sortLabel != null);
 
 	function setParams(mut: (p: URLSearchParams) => void) {
-		const p = new URLSearchParams(page.url.searchParams);
+		const p = new URLSearchParams(page.url.search);
 		mut(p);
 		p.delete('clip');
 		const qs = p.toString();
-		goto(page.url.pathname + (qs ? `?${qs}` : ''), { noScroll: true, keepFocus: true });
+		goto(page.url.pathname + (qs ? `?${qs}` : ''), { reset: false });
 	}
 	const removeQuery = () => setParams((p) => p.delete('q'));
 	const removeCategory = () => setParams((p) => p.delete('category'));
@@ -289,7 +289,7 @@
 		const s = params.get('sort');
 		if (s) p.set('sort', s);
 		const qs = p.toString();
-		goto(page.url.pathname + (qs ? `?${qs}` : ''), { noScroll: true });
+		goto(page.url.pathname + (qs ? `?${qs}` : ''), { reset: false });
 	}
 
 	// --- Date grouping (only when sorting by date) ---

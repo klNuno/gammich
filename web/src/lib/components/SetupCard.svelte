@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { BookOpen, FolderOpen, FolderX, RefreshCw, RotateCw } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
-	import { triggerScan } from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import { triggerScan } from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	// First run: the library has no clips. Either the recordings folder is
 	// missing (wrong mount or path) or it is empty / not scanned yet.

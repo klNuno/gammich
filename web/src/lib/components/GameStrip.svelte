@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { ChevronRight } from '@lucide/svelte';
 	import GameCover from './GameCover.svelte';
-	import { categories } from '$lib/state/categories.svelte';
-	import { gameName } from '$lib/utils';
-	import { t } from '$lib/i18n/index.svelte';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { gameName } from '#lib/utils.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	// Strip of recently played games, at the top of the library.
 	const games = $derived(categories.recent.slice(0, 16));

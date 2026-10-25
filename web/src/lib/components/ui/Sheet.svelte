@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Dialog as Bits } from 'bits-ui';
 	import { fade, fly } from 'svelte/transition';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 	import { X } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = {
 		open?: boolean;

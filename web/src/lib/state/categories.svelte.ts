@@ -1,4 +1,4 @@
-import { listCategories, patchCategory, type Category } from '$lib/api';
+import { listCategories, patchCategory, type Category } from '#lib/api.ts';
 
 // Game list shared by the sidebar, the game strip, the game header and the
 // dialog's game picker: one fetch, refreshed after every change.

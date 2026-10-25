@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { DropdownMenu } from 'bits-ui';
 	import { ArrowDownUp, Check, Grid2x2, Grid3x3, LayoutGrid, Lock } from '@lucide/svelte';
-	import { SORT_OPTIONS, sortLabel as labelOf, type SortOption, type Tag } from '$lib/api';
-	import { t, type MessageKey } from '$lib/i18n/index.svelte';
-	import { menuContentClass, menuItemClass, menuLabelClass } from '$lib/components/ui/menu';
-	import { ui, type Density } from '$lib/state/ui.svelte';
-	import { session } from '$lib/state/session.svelte';
+	import { SORT_OPTIONS, sortLabel as labelOf, type SortOption, type Tag } from '#lib/api.ts';
+	import { t, type MessageKey } from '#lib/i18n/index.svelte.ts';
+	import { menuContentClass, menuItemClass, menuLabelClass } from '#lib/components/ui/menu.ts';
+	import { ui, type Density } from '#lib/state/ui.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
 	import SearchCommand from './SearchCommand.svelte';
 	import InfoTip from './ui/InfoTip.svelte';
 	import { goto } from '$app/navigation';
@@ -15,12 +15,12 @@
 	let { sort, activeTags, query }: Props = $props();
 
 	function setSort(value: SortOption) {
-		const params = new URLSearchParams(page.url.searchParams);
+		const params = new URLSearchParams(page.url.search);
 		if (value === 'date_desc') params.delete('sort');
 		else params.set('sort', value);
 		params.delete('clip');
 		const qs = params.toString();
-		goto(page.url.pathname + (qs ? `?${qs}` : ''), { keepFocus: true, replaceState: true, noScroll: true });
+		goto(page.url.pathname + (qs ? `?${qs}` : ''), { replace: true, reset: false });
 	}
 
 	const sortLabel = $derived(labelOf(SORT_OPTIONS.includes(sort) ? sort : 'date_desc'));

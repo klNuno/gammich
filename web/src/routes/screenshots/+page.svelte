@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ClipGrid from '$lib/components/ClipGrid.svelte';
-	import { t } from '$lib/i18n/index.svelte';
+	import ClipGrid from '#lib/components/ClipGrid.svelte';
+	import { t } from '#lib/i18n/index.svelte.ts';
 </script>
 
 <svelte:head>

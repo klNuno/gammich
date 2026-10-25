@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { ArrowLeft } from '@lucide/svelte';
-	import ClipView from '$lib/components/ClipView.svelte';
-	import { getClip, type Clip } from '$lib/api';
-	import { clipTitle } from '$lib/utils';
-	import { t } from '$lib/i18n/index.svelte';
+	import ClipView from '#lib/components/ClipView.svelte';
+	import { getClip, type Clip } from '#lib/api.ts';
+	import { clipTitle } from '#lib/utils.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	let clip = $state<Clip | null>(null);
 	let error = $state<string | null>(null);

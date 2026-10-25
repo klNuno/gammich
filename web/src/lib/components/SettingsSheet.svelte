@@ -4,11 +4,11 @@
 	import { ImageDown, LogOut, RefreshCw } from '@lucide/svelte';
 	import { goto } from '$app/navigation';
 	import { toast } from 'svelte-sonner';
-	import { getStats, logout, refreshCategoryImages, triggerScan, type Stats } from '$lib/api';
-	import { formatBytes } from '$lib/utils';
-	import { categories } from '$lib/state/categories.svelte';
-	import { session } from '$lib/state/session.svelte';
-	import { formatNumber, i18n, LOCALE_NAMES, t, type LangPref } from '$lib/i18n/index.svelte';
+	import { getStats, logout, refreshCategoryImages, triggerScan, type Stats } from '#lib/api.ts';
+	import { formatBytes } from '#lib/utils.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { session } from '#lib/state/session.svelte.ts';
+	import { formatNumber, i18n, LOCALE_NAMES, t, type LangPref } from '#lib/i18n/index.svelte.ts';
 
 	let { open = $bindable(false) }: { open: boolean } = $props();
 
@@ -68,7 +68,7 @@
 			await logout();
 			open = false;
 			await session.load();
-			goto('/login', { replaceState: true });
+			goto('/login', { replace: true });
 		} catch (e) {
 			toast.error(t('settings.logoutFailed', { error: (e as Error).message }));
 		} finally {

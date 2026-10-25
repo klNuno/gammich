@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Film, Gamepad2, Image as ImageIcon, Tags, Settings } from '@lucide/svelte';
-	import { cn, gameName } from '$lib/utils';
-	import { categories } from '$lib/state/categories.svelte';
+	import { cn, gameName } from '#lib/utils.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
 	import GameCover from './GameCover.svelte';
-	import { formatNumber, t } from '$lib/i18n/index.svelte';
+	import { formatNumber, t } from '#lib/i18n/index.svelte.ts';
 
 	let { openSettings }: { openSettings: () => void } = $props();
 

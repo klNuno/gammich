@@ -1,4 +1,4 @@
-import { cn } from '$lib/utils';
+import { cn } from '#lib/utils.ts';
 
 export const menuContentClass = cn(
 	'z-50 min-w-[12rem] overflow-hidden rounded-lg border border-border bg-popover p-1 text-sm shadow-2xl shadow-black/50'

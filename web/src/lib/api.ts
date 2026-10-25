@@ -1,4 +1,4 @@
-import { t } from '$lib/i18n/index.svelte';
+import { t } from '#lib/i18n/index.svelte.ts';
 
 export interface Clip {
 	id: number;

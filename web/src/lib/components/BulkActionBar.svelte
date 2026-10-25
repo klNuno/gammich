@@ -3,10 +3,10 @@
 	import { Gamepad2, Tag as TagIcon, X } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import GamePicker from './GamePicker.svelte';
-	import { bulkCategory, bulkTag, type Category } from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { gameName } from '$lib/utils';
-	import { t } from '$lib/i18n/index.svelte';
+	import { bulkCategory, bulkTag, type Category } from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { gameName } from '#lib/utils.ts';
+	import { t } from '#lib/i18n/index.svelte.ts';
 
 	type Props = {
 		ids: number[];

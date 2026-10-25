@@ -2,10 +2,10 @@
 	import { Check, Plus } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import GameCover from './GameCover.svelte';
-	import { createCategory, type Category } from '$lib/api';
-	import { categories } from '$lib/state/categories.svelte';
-	import { gameName } from '$lib/utils';
-	import { formatNumber, t } from '$lib/i18n/index.svelte';
+	import { createCategory, type Category } from '#lib/api.ts';
+	import { categories } from '#lib/state/categories.svelte.ts';
+	import { gameName } from '#lib/utils.ts';
+	import { formatNumber, t } from '#lib/i18n/index.svelte.ts';
 
 	// Filterable game list, with on-the-fly creation. Popover content: the
 	// parent provides the trigger and closes the popover in onPick.
