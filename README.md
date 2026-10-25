@@ -136,7 +136,7 @@ GAMMICH_PASSWORD=change-me ./gammich -videos /path/to/recordings
 
 ## Development
 
-Needs Go 1.27, Node 24 with pnpm, and ffmpeg.
+Needs Go 1.27, Node 24 or newer with pnpm, and ffmpeg.
 
 ```sh
 make fixtures   # demo library in _fixtures/, built with ffmpeg
