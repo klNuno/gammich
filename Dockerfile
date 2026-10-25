@@ -2,7 +2,7 @@
 
 # The build stages run on the builder's own platform; Go cross-compiles, so
 # only the runtime stage is emulated for arm64.
-FROM --platform=$BUILDPLATFORM node:24-alpine AS web
+FROM --platform=$BUILDPLATFORM node:26-alpine AS web
 WORKDIR /web
 RUN corepack enable
 COPY web/package.json web/pnpm-lock.yaml web/.npmrc ./
